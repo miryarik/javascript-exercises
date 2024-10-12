@@ -1,38 +1,13 @@
 const findTheOldest = function(people) {
-    
-    // map each person to their age
-    let ages = people.map((person) => {
-        
-        // initialize current date object
-        let currentDate = new Date();
+    people.forEach(person => {
+        if (person.yearOfDeath)
+            person.age = person.yearOfDeath - person.yearOfBirth;
+        else
+            person.age = (new Date().getFullYear()) - person.yearOfBirth;
+    });
 
-        // if yearOfDeath is missing, calculate age upto current year
-        if (person.yearOfDeath === undefined) {
-            let age = (currentDate.getFullYear() - person.yearOfBirth);
-            return age;
-        }
-        else {
-            let age = (person.yearOfDeath - person.yearOfBirth);
-            return age;
-        }
-    })
-
-    // oldest guy initialization
-    let oldest = {
-        index: -1,
-        age: 0
-    };
-
-    // find the index with greatest value in ages
-    for (let i = 0; i < ages.length; i++) {
-        if (ages[i] > oldest.age) {
-            oldest.age = ages[i];
-            oldest.index = i;
-        }
-    }
-
-    // get the object at oldest.index in people
-    return people[oldest.index];
+    return people.reduce((oldest, person) => oldest.age > person.age? oldest : person
+    );
 };
 
 // Do not edit below this line
