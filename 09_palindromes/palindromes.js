@@ -1,23 +1,16 @@
-const palindromes = function (inputStr) {
+const palindromes = function (str) {
 
-    // force str to lower-case
-    let lowerStr = inputStr.toLowerCase();
+    // forcer lowercase, split into single characters, filter alphanumeric characters to array
+    const cleanedString = str.toLowerCase()
+                             .split('')
+                             .filter((item) => item.search(/[a-z0-9]/) === 0);
 
-    // array for str characters
-    let charArray = [];
-
-    // put only alphabetical characters into str
-    for (let i = 0; i < lowerStr.length; i++)
-        if (lowerStr[i].search(/[a-z0-9]/) === 0)
-            charArray.push(lowerStr[i]);
-
-    // reverse the splitted array
-    let revArray = charArray.toReversed();
-
-    // compare string formed by charArray and revArray    
-    return (charArray.join("") === revArray.join(""));
-
+    // compare strings formed by array and reversed array
+    return cleanedString.join('') === cleanedString.toReversed().join('');
 };
+
+console.log(palindromes('racr'));
+
 
 // Do not edit below this line
 module.exports = palindromes;
