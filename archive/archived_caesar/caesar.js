@@ -1,5 +1,5 @@
-const caesar = function() {
-
+const caesar = function(cipher, shift) {
+    
 };
 
 // Do not edit below this line
